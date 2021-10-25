@@ -1,0 +1,12 @@
+{% macro concate(name, character, number) %}
+    {% if (name|first == "a") or (number is odd) or (character != "B")  %}
+        <div class="alert alert-danger" role="alert">{{name ~ ' a obtenu le ' ~ character ~ number ~ ' !' }}</div>
+    {% else %}
+        <div class="alert alert-success" role="alert">{{name ~ ' a obtenu le ' ~ character ~ number ~ ' !' }}</div>
+    {% endif %}
+{% endmacro %}
+
+{% macro makeform () %}
+    <input type="text" class="form-control" placeholder="{{'Ceci est un input'|firstWord}}"> 
+    {{makeBtn('Envoyer', 'dark')}}
+{% endmacro %}

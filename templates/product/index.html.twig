@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Produits{% endblock %}
+
+{% block body %}
+    <h1>Liste des produits</h1>
+    <div class='container'>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for product in products %}
+                {% if product.visible == true %}
+                    <div class="card h-100" >
+                        <img class="card-img-top" src="{{product.mainPicture}}" alt="">
+                        <div class="card-body">
+                            <span class="badge rounded-pill bg-{{product.category.color}}"> {{ product.category.name }}</span>
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">{{ product.shortDescription|u.truncate(70, '...', true) }}</p>
+                            <a href="{{path('product_show', {'id':product.id})}}" class="btn btn-primary">Plus de détails</a>
+                            <hr>
+                            <p class="card-text">{{ product.price }}</p>
+                            <p class="card-text">{{product.quantity ~ ' en stock'}}</p>
+                            <p class="card-text">{{product.createdAt|date("d/m/Y")}}</p>
+                            <hr>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

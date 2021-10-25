@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() }}Liste des stagiaires{% endblock %}
+
+{% block body %}
+    
+    <h1>Liste des stagiaires</h1>
+
+    <ul>
+        {% for name in names %}
+            {% if name=="thierry" %}
+
+                <li>{{ name|upper }}</li>
+
+            {% endif %} 
+        {% endfor %}
+    </ul>
+{% endblock %}

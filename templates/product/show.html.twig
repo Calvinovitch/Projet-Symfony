@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{product.name}} {% endblock %}
+
+{% block body %}
+    {{ product.name}}
+
+    <p class="card-text">{{product.longDescription}}</p>
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+{% import "macro/example.html.twig" as example %}
+
+{% block title %}{{ parent() }}Liste des stagiaires{% endblock %}
+
+{% block body %}
+    
+    <h1>Liste des stagiaires</h1>
+
+    <ol>
+
+        {% for stagiaire in trainees|sort %}
+            {% if stagiaire[1] <=  ageLess  %}
+                    <li>{{ stagiaire[0]|capitalize  }} a {{ stagiaire[1]}} ans </li>
+
+            {% elseif stagiaire[1] >= ageMore  %}
+                    <li>{{ stagiaire[0]|upper }} a {{ stagiaire[1] }} ans </li>
+
+            {% else %}
+                    <li>{{ stagiaire[0] }} a {{ stagiaire[1] }} ans </li>
+            {% endif %}
+        {% endfor %}
+    </ol>
+
+    {% set dateNow = "now"|date("d/m/Y H:i:s") %}
+    <p>Nous sommes le {{dateNow}}</p>
+
+    {# {% set color = 'blue' %} #}
+    {# {% set length = trainees|length %} #}
+    {% include 'test/lorem.html.twig' with {'color': 'blue', 'length': trainees|length } %}
+
+    {% set name = trainees[random(0,trainees|length -1)][0] %}
+    {% set character = random('ABC') %}
+    {% set number = random(1, 26) %}
+
+    {{ example.concate(name, character, number) }}
+    
+    {{ example.makeform() }}
+
+{% endblock %}
